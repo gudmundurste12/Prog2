@@ -1,19 +1,25 @@
 angular.module("ChatApp").controller("HomeCtrl", ["$scope", "$location", function($scope, $location){
 	var socket = io.connect('http://localhost:8080');
-	var userName = prompt("Please select a user name");
+	$scope.userName = "";
+	$scope.connect = function() {
+		socket.emit("adduser", $scope.userName, function(available){
+			if(available){
+				//The user name is not taken
+				console.log("available");
+				succeeded = true;
+			}
+			else{
+				//The user name is taken
+				console.log("not available");
+				succeeded = false;
+			}
+		});
+	};
 	
-	while((userName == null) || false) //Replace false with some condition, check if the userName exists
-	{
-		if(userName == null)
-		{
-			userName = prompt("You must select a user name");
-		}
-		else
-		{
-			userName = prompt("That user name is already taken\nPlease select a different user name");
-		}
-	}
-	$scope.userName = userName;
+	
+	
+	
+	
 	
 	$scope.getChatRooms = function($scope){
 		return [{

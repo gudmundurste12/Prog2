@@ -1,5 +1,8 @@
 <div>
-	<h1>Hello {{userName}}</h1>
+	<h1>Select your user name</h1>
+	<input ng-model="userName" placeholder="Select user name"></input>
+	<button ng-click="connect()">Connect</button>
+	
 	<div id="ListOfChatRooms">
 		<!--<table>
 			<tr ng-repeat="item in getChatRooms()">
