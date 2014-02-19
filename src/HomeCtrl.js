@@ -1,4 +1,5 @@
-angular.module("ChatApp").controller("HomeCtrl", ["$scope", function($scope){
+angular.module("ChatApp").controller("HomeCtrl", ["$scope", "$location", function($scope, $location){
+	var socket = io.connect('http://localhost:8080');
 	var userName = prompt("Please select a user name");
 	
 	while((userName == null) || false) //Replace false with some condition, check if the userName exists
