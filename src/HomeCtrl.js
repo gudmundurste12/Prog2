@@ -13,4 +13,17 @@ angular.module("ChatApp").controller("HomeCtrl", ["$scope", function($scope){
 		}
 	}
 	$scope.userName = userName;
+	
+	$scope.getChatRooms = function($scope){
+		return [{
+			"ID": 1,
+			"Name": "Name1"
+		}, {
+			"ID": 2,
+			"Name": "Awesome chat room"
+		}, {
+			"ID": 3,
+			"Name": "Just another chat room"
+		}];
+	}
 }]);
