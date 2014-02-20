@@ -1,3 +1,12 @@
 <div>
 	<h1>Welcome {{userName}}</h1>
+	<div id="ListOfChatRooms">
+		<table>
+			<tr ng-repeat="item in chatRooms">
+				<!-- To be replaced with actual data from the server>-->
+				<td>{{item.topic}}</td>
+				<!--<td>{{item.Name}}</td>-->
+			</tr>
+		</table>
+	</div>
 </div>

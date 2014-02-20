@@ -1,8 +1,9 @@
 angular.module("ChatApp").controller("LoginCtrl", ["$scope", "$location", function($scope, $location){
-	var socket = io.connect('http://localhost:8080');
+	
 	$scope.userName = "";
 	$scope.errorMessage;
 	
+	//Connects the user to the app
 	$scope.connect = function() {
 		socket.emit("adduser", $scope.userName, function(available){
 			if(available){
@@ -16,10 +17,11 @@ angular.module("ChatApp").controller("LoginCtrl", ["$scope", "$location", functi
 					console.log("Name available");
 					$scope.errorMessage = "";
 					
+					//TODO: Add the user and other setup before leaving
 					$location.path("/Home");
 					$scope.$apply();
 					
-					//TODO: Add the user
+					
 				}
 			}
 			else{
@@ -36,19 +38,4 @@ angular.module("ChatApp").controller("LoginCtrl", ["$scope", "$location", functi
 			}
 		});
 	};
-	
-	
-	
-	$scope.getChatRooms = function($scope){
-		return [{
-			"ID": 1,
-			"Name": "Name1"
-		}, {
-			"ID": 2,
-			"Name": "Awesome chat room"
-		}, {
-			"ID": 3,
-			"Name": "Just another chat room"
-		}];
-	}
 }]);
