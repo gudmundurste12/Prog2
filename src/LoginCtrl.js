@@ -8,12 +8,17 @@ angular.module("ChatApp").controller("LoginCtrl", ["$scope", "$location", functi
 			if(available){
 				if($scope.userName === ""){
 					$scope.errorMessage = "Please select a user name";
+					$scope.$apply();
 				}
 				else
 				{
 					//The user name is not taken
 					console.log("Name available");
 					$scope.errorMessage = "";
+					
+					$location.path("/Home");
+					$scope.$apply();
+					
 					//TODO: Add the user
 				}
 			}
@@ -22,9 +27,11 @@ angular.module("ChatApp").controller("LoginCtrl", ["$scope", "$location", functi
 				console.log("Some error");
 				if($scope.userName === ""){
 					$scope.errorMessage = "Please select a user name";
+					$scope.$apply();
 				}
 				else{
 					$scope.errorMessage = "That user name is already taken";
+					$scope.$apply();
 				}
 			}
 		});
