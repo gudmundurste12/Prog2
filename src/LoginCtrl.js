@@ -1,4 +1,4 @@
-angular.module("ChatApp").controller("HomeCtrl", ["$scope", "$location", function($scope, $location){
+angular.module("ChatApp").controller("LoginCtrl", ["$scope", "$location", function($scope, $location){
 	var socket = io.connect('http://localhost:8080');
 	$scope.userName = "";
 	$scope.errorMessage;
@@ -12,15 +12,14 @@ angular.module("ChatApp").controller("HomeCtrl", ["$scope", "$location", functio
 				else
 				{
 					//The user name is not taken
-					console.log("available");
+					console.log("Name available");
 					$scope.errorMessage = "";
 					//TODO: Add the user
 				}
 			}
 			else{
 				//The user name is taken or something else is wrong
-				console.log("not available");
-				console.log($scope.userName);
+				console.log("Some error");
 				if($scope.userName === ""){
 					$scope.errorMessage = "Please select a user name";
 				}
