@@ -4,17 +4,16 @@
 		<title>Programming assignment 2</title>
 		<link rel="stylesheet" type="text/css" href="Prog2.css"/>
 		<script src="http://code.jquery.com/jquery-latest.js"></script>
+		<script src="node_modules/socket.io/node_modules/socket.io-client/dist/socket.io.min.js"></script>
 		<script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
 		<script type="text/javascript" src="bower_components/angular-route/angular-route.min.js"></script>
-		<script src="src/Main.js"></script>
-		<script src="src/HomeCtrl.js"></script>
+		
+		<script type="text/javascript" src="src/Main.js"></script>
+		<script type="text/javascript" src="src/LoginCtrl.js"></script>
+		<script type="text/javascript" src="src/HomeCtrl"></script>
 	</head>
 	<body>
-	<!--
-		<div ng-controller="HomeCtrl">
-			{{userName}}
-		</div>
-	-->
+		<!-- Main content will be loaded here-->
 		<div ng-view></div>
 	</body>
 </html>
