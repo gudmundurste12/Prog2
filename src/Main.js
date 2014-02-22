@@ -1,5 +1,5 @@
 //Set up the module with dependencies
-angular.module("ChatApp", ['ngRoute']);
+var app = angular.module("ChatApp", ['ngRoute']);
 var socket = io.connect('http://localhost:8080');
 
 angular.module("ChatApp").config(["$routeProvider", function($routeProvider){

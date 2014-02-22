@@ -1,6 +1,8 @@
-angular.module("ChatApp").controller("HomeCtrl", 
-	["$scope", "$routeParams", "$location", function($scope, $location){
+app.controller("HomeCtrl", 
+	["$scope", "$location", "Globals", "$routeParams", function($scope, $location, Globals){
+	console.log(Globals);
 	$scope.chatRooms=[];
+	$scope.userName = Globals.getUserName();
 	getChatRooms();
 	
 	socket.on("roomlist", function(rooms){

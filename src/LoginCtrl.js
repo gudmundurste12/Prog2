@@ -1,7 +1,7 @@
-angular.module("ChatApp").controller("LoginCtrl", 
-	["$scope", "$location", function($scope, $location){
-	
-	$scope.userName = "";
+app.controller("LoginCtrl", 
+	["$scope", "$location", "Globals", function($scope, $location, Globals){
+	console.log(Globals);
+	$scope.userName = Globals.getUserName();
 	$scope.errorMessage = "";
 	
 	//Connects the user to the app
@@ -19,9 +19,9 @@ angular.module("ChatApp").controller("LoginCtrl",
 					$scope.errorMessage = "";
 					
 					//TODO: Add the user and other setup before leaving
+					Globals.setUserName($scope.userName);
 					$location.path("/Home");
 					$scope.$apply();
-					
 					
 				}
 			}
