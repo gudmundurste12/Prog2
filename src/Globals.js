@@ -6,14 +6,15 @@ angular.module("ChatApp").factory("Globals", [function(){
 		setUserName: function(u){
 			userName = u;
 		},
-		setSocket: function(s){
-			socket = s;
-		},
-		
 		getUserName: function(){
 			return userName;
 		},
+		
+		
 		getSocket: function(){
+			if(socket == undefined){
+				socket = io.connect("http://localhost:8080");
+			}
 			return socket;
 		}
 	};
