@@ -1,7 +1,7 @@
 angular.module("ChatApp").controller("LoginCtrl", ["$scope", "$location", function($scope, $location){
 	
 	$scope.userName = "";
-	$scope.errorMessage;
+	$scope.errorMessage = "Error message";
 	
 	//Connects the user to the app
 	$scope.connect = function() {

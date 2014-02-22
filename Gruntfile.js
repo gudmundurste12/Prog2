@@ -3,6 +3,15 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
+    	jshint: {
+    		options:{
+
+    		},
+    		files:{
+    			src:['src/*.js']
+    		}
+    	},
+
 
 		watch:{
 			files:['src/*']
@@ -18,9 +27,10 @@ module.exports = function(grunt) {
 	});
 
   // Load the plugin that provides the "uglify" task.
-  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-connect');
+  grunt.loadNpmTasks('grunt-contrib-watch');
 
   // Default task(s).
-  grunt.registerTask('default', ['connect', 'watch']);
+  grunt.registerTask('default', ['jshint', 'connect', 'watch']);
 };
