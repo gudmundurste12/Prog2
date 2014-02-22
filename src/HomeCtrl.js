@@ -1,5 +1,6 @@
-angular.module("ChatApp").controller("HomeCtrl", ["$scope", "$routeParams", "$location", function($scope, $location){
-	$scope.chatRooms;
+angular.module("ChatApp").controller("HomeCtrl", 
+	["$scope", "$routeParams", "$location", function($scope, $location){
+	$scope.chatRooms=[];
 	getChatRooms();
 	
 	socket.on("roomlist", function(rooms){

@@ -1,14 +1,15 @@
-angular.module("ChatApp").controller("LoginCtrl", ["$scope", "$location", function($scope, $location){
+angular.module("ChatApp").controller("LoginCtrl", 
+	["$scope", "$location", function($scope, $location){
 	
 	$scope.userName = "";
-	$scope.errorMessage;
+	$scope.errorMessage = "";
 	
 	//Connects the user to the app
 	$scope.connect = function() {
 		socket.emit("adduser", $scope.userName, function(available){
 			if(available){
 				if($scope.userName === ""){
-					$scope.errorMessage = "Please select a user name";
+					$scope.errorMessage = "Please select a user name:";
 					$scope.$apply();
 				}
 				else
@@ -26,13 +27,13 @@ angular.module("ChatApp").controller("LoginCtrl", ["$scope", "$location", functi
 			}
 			else{
 				//The user name is taken or something else is wrong
-				console.log("Some error");
+				console.log("Username taken error");
 				if($scope.userName === ""){
 					$scope.errorMessage = "Please select a user name";
 					$scope.$apply();
 				}
 				else{
-					$scope.errorMessage = "That user name is already taken";
+					$scope.errorMessage = "That user name is already taken!";
 					$scope.$apply();
 				}
 			}
