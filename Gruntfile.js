@@ -1,16 +1,40 @@
 module.exports = function(grunt) {
-  // Project configuration.
-  grunt.initConfig({
-    pkg: grunt.file.readJSON('package.json'),
+	// Project configuration.
+	grunt.initConfig({
+		pkg: grunt.file.readJSON('package.json'),
 
-    	jshint: {
-    		options:{
+		jshint: {
+			options:{
 
-    		},
-    		files:{
-    			src:['src/*.js']
-    		}
-    	},
+			},
+			files:{
+				src:['src/*.js']
+			}
+		},
+		concat:{
+			options:{
+				separator: ';',
+			},
+			dist:{
+				src:[
+					'src/Main.js',
+					'src/Globals.js',
+					'src/LoginCtrl.js',
+					'src/HomeCtrl.js' 
+					],
+				dest:'dest/out.min.js',
+			}
+		},
+		uglify:{
+			options:{
+
+			},
+			my_target:{
+				files:{
+					'dest/ugly.min.js' : ['dest/out.min.js']
+				}
+			}
+		},
 
 
 		watch:{
@@ -26,11 +50,13 @@ module.exports = function(grunt) {
 
 	});
 
-  // Load the plugin that provides the "uglify" task.
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-connect');
-  grunt.loadNpmTasks('grunt-contrib-watch');
+	// Load the plugin that provides the "uglify" task.
+	grunt.loadNpmTasks('grunt-contrib-jshint');
+	grunt.loadNpmTasks('grunt-contrib-concat');
+	grunt.loadNpmTasks('grunt-contrib-connect');
+	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-contrib-uglify');
 
-  // Default task(s).
-  grunt.registerTask('default', ['jshint', 'connect', 'watch']);
+	// Default task(s).
+	grunt.registerTask('default', ['jshint', 'concat', 'uglify','connect', 'watch']);
 };
