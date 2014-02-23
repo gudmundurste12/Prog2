@@ -1,6 +1,13 @@
 <div>
-	<p>{{userName}}</p>
+	<p>You are logged in as: {{userName}}</p>
 	<h1>{{chatRooms.lobby.topic}}</h1>
+	
+	<div id="CreateNewChatRoom">
+		<input placeholder="Name of chatroom"></input>
+		<button>Create chatroom</button>
+		<p>{{errorMessage}}</p>
+	</div>
+	
 	<div id="ListOfChatRooms">
 		<table>
 			<tr ng-repeat="item in chatRooms" ng-hide="$first">

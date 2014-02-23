@@ -2,8 +2,14 @@ angular.module("ChatApp").controller("HomeCtrl",
 	["$scope", "$location", "Globals", "$routeParams", function($scope, $location, Globals){
 	$scope.chatRooms = [];
 	$scope.userName = Globals.getUserName();
+	$scope.errorMessage = "";
 	var socket = Globals.getSocket();
-	getChatRooms();
+	
+	
+	
+	joinRoom();
+	
+	
 	
 	socket.on("roomlist", function(rooms){
 		$scope.chatRooms = rooms;
@@ -16,7 +22,19 @@ angular.module("ChatApp").controller("HomeCtrl",
 		socket.emit("rooms");
 	}
 	
-	
+	//TODO: Redirect to chatroom
+	function joinRoom(){
+		socket.emit("joinroom", {room: undefined}, function(success, reason){
+			if(success === true){
+				alert("Success");
+			}
+			else{
+				alert("Failure");
+			}
+			
+			getChatRooms();
+		});
+	}
 	
 	
 }]);
