@@ -11,7 +11,6 @@ angular.module("ChatApp").controller("LoginCtrl",
 			if(available){
 				if($scope.userName === ""){
 					$scope.errorMessage = "Please select a user name:";
-					$scope.$apply();
 				}
 				else
 				{
@@ -20,7 +19,6 @@ angular.module("ChatApp").controller("LoginCtrl",
 					//TODO: Add the user and other setup before leaving
 					Globals.setUserName($scope.userName);
 					$location.path("/Home");
-					$scope.$apply();
 					
 				}
 			}
@@ -28,13 +26,12 @@ angular.module("ChatApp").controller("LoginCtrl",
 				//The user name is taken or something else is wrong
 				if($scope.userName === ""){
 					$scope.errorMessage = "Please select a user name";
-					$scope.$apply();
 				}
 				else{
 					$scope.errorMessage = "That user name is already taken!";
-					$scope.$apply();
 				}
 			}
+			$scope.$apply();
 		});
 	};
 }]);
