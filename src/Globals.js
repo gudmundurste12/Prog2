@@ -12,7 +12,7 @@ app.factory("Globals", [function() {
 		
 		
 		getSocket: function() {
-			if(socket == undefined) {
+			if(socket === undefined) {
 				socket = io.connect("http://localhost:8080");
 			}
 			return socket;
