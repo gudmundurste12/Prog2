@@ -5,11 +5,8 @@ angular.module("ChatApp").config(["$routeProvider", function($routeProvider){
 	$routeProvider.when("/", {
 		templateUrl: "views/Login.html",
 		controller: "LoginCtrl"
-	}).when("/Home", {
+	}).when("/Home/:roomName", {
 		templateUrl: "views/Home.html",
 		controller: "HomeCtrl"
-	}).when("/ChatRoom/:RoomName", {
-		templateUrl: "views/ChatRoom.html",
-		controller: "ChatCtrl"
-		}).otherwise({redirectTo: "/"});
+	}).otherwise({redirectTo: "/"});
 }]);
