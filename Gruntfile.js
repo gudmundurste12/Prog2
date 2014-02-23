@@ -20,8 +20,7 @@ module.exports = function(grunt) {
 					'src/Main.js',
 					'src/Globals.js',
 					'src/LoginCtrl.js',
-					'src/HomeCtrl.js',
-					'src/ChatCtrl.js'
+					'src/HomeCtrl.js'
 					],
 				dest:'dest/out.min.js',
 			}
