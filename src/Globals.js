@@ -1,4 +1,4 @@
-app.factory("Globals", [function() {
+angular.module("ChatApp").factory("Globals", [function() {
 	var userName = "";
 	var socket;
 	

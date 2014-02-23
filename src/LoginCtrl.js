@@ -1,8 +1,9 @@
-app.controller("LoginCtrl", 
+angular.module("ChatApp").controller("LoginCtrl", 
 	["$scope", "$location", "Globals", function($scope, $location, Globals){
-	console.log(Globals);
 	$scope.userName = Globals.getUserName();
 	$scope.errorMessage = "";
+	var socket = Globals.getSocket();
+	
 	
 	//Connects the user to the app
 	$scope.connect = function() {
@@ -14,8 +15,6 @@ app.controller("LoginCtrl",
 				}
 				else
 				{
-					//The user name is not taken
-					console.log("Name available");
 					$scope.errorMessage = "";
 					
 					//TODO: Add the user and other setup before leaving
@@ -27,7 +26,6 @@ app.controller("LoginCtrl",
 			}
 			else{
 				//The user name is taken or something else is wrong
-				console.log("Username taken error");
 				if($scope.userName === ""){
 					$scope.errorMessage = "Please select a user name";
 					$scope.$apply();
