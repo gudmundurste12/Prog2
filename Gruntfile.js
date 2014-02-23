@@ -35,6 +35,9 @@ module.exports = function(grunt) {
 				}
 			}
 		},
+		clean:{
+			src:['dest/out.min.js']
+		},
 
 
 		watch:{
@@ -56,7 +59,8 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-connect');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-contrib-clean');
 
 	// Default task(s).
-	grunt.registerTask('default', ['jshint', 'concat', 'uglify','connect', 'watch']);
+	grunt.registerTask('default', ['jshint', 'concat', 'uglify', 'clean', 'connect', 'watch']);
 };
