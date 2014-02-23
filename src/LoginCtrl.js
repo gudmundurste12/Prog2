@@ -14,12 +14,8 @@ angular.module("ChatApp").controller("LoginCtrl",
 				}
 				else
 				{
-					$scope.errorMessage = "";
-					
-					//TODO: Add the user and other setup before leaving
 					Globals.setUserName($scope.userName);
-					$location.path("/Home");
-					
+					$location.path("/Home/Lobby");
 				}
 			}
 			else{

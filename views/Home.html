@@ -3,17 +3,14 @@
 	<h1>{{chatRooms.lobby.topic}}</h1>
 	
 	<div id="CreateNewChatRoom">
-		<input placeholder="Name of chatroom"></input>
-		<button>Create chatroom</button>
+		<button>Create a new chatroom</button>
 		<p>{{errorMessage}}</p>
 	</div>
 	
 	<div id="ListOfChatRooms">
 		<table>
 			<tr ng-repeat="item in chatRooms" ng-hide="$first">
-				<!-- To be replaced with actual data from the server>-->
 				<td>{{item.topic}}</td>
-				<!--<td>{{item.Name}}</td>-->
 				<input />
 				<button>Send</button>
 			</tr>

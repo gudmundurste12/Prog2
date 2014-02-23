@@ -5,12 +5,12 @@ angular.module("ChatApp").controller("HomeCtrl",
 	$scope.errorMessage = "";
 	var socket = Globals.getSocket();
 	
+	//Asks the server for a list of chatrooms
+	function getChatRooms(){
+		socket.emit("rooms");
+	}
 	
-	
-	joinRoom();
-	
-	
-	
+	//The server is sending the chatrooms
 	socket.on("roomlist", function(rooms){
 		$scope.chatRooms = rooms;
 		console.log($scope.chatRooms);
@@ -18,11 +18,9 @@ angular.module("ChatApp").controller("HomeCtrl",
 		$scope.$apply();
 	});
 	
-	function getChatRooms(){
-		socket.emit("rooms");
-	}
 	
-	//TODO: Redirect to chatroom
+	//Request to join a chatroom
+	//TODO: Listen to the events emitted and handle them
 	function joinRoom(){
 		socket.emit("joinroom", {room: undefined}, function(success, reason){
 			if(success === true){
