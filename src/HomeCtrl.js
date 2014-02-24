@@ -1,8 +1,9 @@
 angular.module("ChatApp").controller("HomeCtrl", 
 	["$scope", "$location", "Globals", "$routeParams", function($scope, $location, Globals){
 	$scope.chatRooms = [];
+	$scope.messageList = [];
+	$scope.userList = [];
 	$scope.userName = Globals.getUserName();
-	$scope.errorMessage = "";
 	var socket = Globals.getSocket();
 	
 	//Asks the server for a list of chatrooms
