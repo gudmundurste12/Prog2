@@ -1,9 +1,21 @@
 angular.module("ChatApp").controller("HomeCtrl", 
 	["$scope", "$location", "Globals", "$routeParams", function($scope, $location, Globals, $routeParams){
-	$scope.chatRooms = [];
+	//$scope.chatRooms = [];
+	// Dummy chatrooms
+	$scope.chatRooms = [{
+		topic: "WAT"
+	}, {
+		topic: "Here be chatrooms"
+	}, {
+		topic: "Who's your daddy and what does he do?"
+	}];
+	
+	
+	
 	$scope.messageList = [];
 	$scope.userList = [];
 	$scope.roomName = $routeParams.roomName;
+	$scope.chatRoomName = "";
 	$scope.userName = Globals.getUserName();
 	var socket = Globals.getSocket();
 	
@@ -24,12 +36,15 @@ angular.module("ChatApp").controller("HomeCtrl",
 	
 	$scope.createNewChatRoom = function(){
 		//TODO: Implement
-		console.log("Create a new chatroom");
+		console.log("Creating a new chatroom: " + $scope.chatRoomName);
+		$scope.joinRoom(undefined);
 	};
 	
 	//Request to join a chatroom
 	//TODO: Handle the events
-	function joinRoom(){
+	$scope.joinRoom = function(id){
+		console.log("Kominn i joinRoom");
+		console.log(id);
 		//As a response, the server will emit the following events:
 		//updateusers, servermessage, updatechat, updatetopic(not required to handle)
 		socket.emit("joinroom", {room: undefined}, function(success, reason){
@@ -42,7 +57,7 @@ angular.module("ChatApp").controller("HomeCtrl",
 			
 			getChatRooms();
 		});
-	}
+	};
 	
 	//Sends information about the users in the chatroom
 	socket.on("updateusers", function(room, users){

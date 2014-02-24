@@ -2,13 +2,16 @@
 	<h1>Welcome to the lobby, {{userName}}</h1>
 	
 	<div id="CreateNewChatRoom">
+		<input ng-model="chatRoomName" placeholder="Enter room name"></input>
 		<button ng-click="createNewChatRoom()">Create a new chatroom</button>
 	</div>
 	
+	<p>or click a room from the list to join.</p>
+	
 	<div id="ListOfChatRooms">
 		<table>
-			<ul ng-repeat="item in chatRooms" ng-hide="$first">
-				<li>{{item.topic}}</li>
+			<ul ng-repeat="item in chatRooms">
+				<li ng-click="joinRoom($index)"><p>{{$index}}</p> {{item.topic}}</li>
 			</ul>
 		</table>
 	</div>
