@@ -3,6 +3,7 @@ angular.module("ChatApp").controller("HomeCtrl",
 	$scope.chatRooms = [];
 	$scope.messageList = [];
 	$scope.userList = [];
+	$scope.roomName = $routeParams.roomName;
 	$scope.userName = Globals.getUserName();
 	var socket = Globals.getSocket();
 	
