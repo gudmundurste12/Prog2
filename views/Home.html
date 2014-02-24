@@ -1,6 +1,5 @@
 <div>
-	<p>You are logged in as: {{userName}}</p>
-	<h1>{{chatRooms.lobby.topic}}</h1>
+	<h1>Welcome to the lobby, {{userName}}</h1>
 	
 	<div id="CreateNewChatRoom">
 		<button ng-click="createNewChatRoom()">Create a new chatroom</button>
@@ -8,11 +7,9 @@
 	
 	<div id="ListOfChatRooms">
 		<table>
-			<tr ng-repeat="item in chatRooms" ng-hide="$first">
-				<td>{{item.topic}}</td>
-				<input />
-				<button>Send</button>
-			</tr>
+			<ul ng-repeat="item in chatRooms" ng-hide="$first">
+				<li>{{item.topic}}</li>
+			</ul>
 		</table>
 	</div>
 </div>
