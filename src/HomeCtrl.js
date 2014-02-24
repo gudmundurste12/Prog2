@@ -8,7 +8,9 @@ angular.module("ChatApp").controller("HomeCtrl",
 	
 	//Asks the server for a list of chatrooms
 	function getChatRooms(){
+		//The server will emit the roomlist event as a response
 		socket.emit("rooms");
+		
 	}
 	
 	//The server is sending the chatrooms
@@ -19,9 +21,16 @@ angular.module("ChatApp").controller("HomeCtrl",
 		$scope.$apply();
 	});
 	
+	$scope.createNewChatRoom = function(){
+		//TODO: Implement
+		console.log("Create a new chatroom");
+	};
+	
 	//Request to join a chatroom
 	//TODO: Handle the events
 	function joinRoom(){
+		//As a response, the server will emit the following events:
+		//updateusers, servermessage, updatechat, updatetopic(not required to handle)
 		socket.emit("joinroom", {room: undefined}, function(success, reason){
 			if(success === true){
 				alert("Success");
