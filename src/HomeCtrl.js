@@ -50,12 +50,12 @@ angular.module("ChatApp").controller("HomeCtrl",
 		socket.emit("joinroom", {room: undefined}, function(success, reason){
 			if(success === true){
 				alert("Success");
+				$location.path("Home/" + id);
+				$scope.$apply();
 			}
 			else{
 				alert("Failure");
 			}
-			
-			getChatRooms();
 		});
 	};
 	
@@ -68,6 +68,12 @@ angular.module("ChatApp").controller("HomeCtrl",
 	//Informs about the newly added or removed user
 	socket.on("servermessage", function(message, room, userName){
 		//TODO: Implement
+		if(message === "join"){
+		
+		}
+		else{
+		
+		}
 		
 	});
 	
