@@ -1,7 +1,7 @@
 <div>
 	<p>You are logged in as: {{userName}}</p>
 	
-	<div>
+	<div id="Chat">
 		<ul>
 			<li ng-repeat="item in messageList" ng-hide="$first">
 				<span>
@@ -13,5 +13,10 @@
 		</ul>
 		<input />
 		<button>Send</button>
+	</div>
+	<div id="ListOfUsers">
+		<ul>
+			<li ng-repeat="item in userList"></li>
+		</ul>
 	</div>
 </div>
