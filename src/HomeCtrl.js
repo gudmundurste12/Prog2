@@ -1,6 +1,6 @@
 angular.module("ChatApp").controller("HomeCtrl", 
 	["$scope", "$location", "Globals", "$routeParams", function($scope, $location, Globals, $routeParams){
-	$scope.chatRooms = [];
+	
 	
 	//Dummy chatrooms
 	// $scope.chatRooms = [{
@@ -12,13 +12,13 @@ angular.module("ChatApp").controller("HomeCtrl",
 	// }];
 	
 	
-	
+	$scope.chatRooms = [];
 	$scope.messageList = [];
 	$scope.userList = [];
-	$scope.roomName = $routeParams.roomName;
 	$scope.chatRoomName = "";
 	$scope.userName = Globals.getUserName();
 	$scope.theMessage = "";
+	$scope.currentRoom = $routeParams.roomName;
 	var socket = Globals.getSocket();
 	
 	getChatRooms();
@@ -55,7 +55,7 @@ angular.module("ChatApp").controller("HomeCtrl",
 				//	Globals.setNumberOfRooms(Globals.getNumberOfRooms() + 1);
 				//	id = Globals.getNumberOfRooms();
 				//}
-				Globals.setCurrentRoom(id);
+				$scope.currentRoom = id;
 				//alert("Success");
 				
 				$location.path("Home/" + id);
@@ -69,7 +69,7 @@ angular.module("ChatApp").controller("HomeCtrl",
 	
 	//Sends information about the users in the chatroom
 	socket.on("updateusers", function(room, users, ops){
-		if(Globals.getCurrentRoom() == room){
+		if($scope.currentRoom == room){
 			$scope.userList = users;
 		}
 		console.log("updateusers");
@@ -90,7 +90,7 @@ angular.module("ChatApp").controller("HomeCtrl",
 	
 	//Only used if a new room is being created
 	socket.on("updatechat", function(roomNumber, messageHistory){
-		if(Globals.getCurrentRoom() == roomNumber){
+		if($scope.currentRoom == roomNumber){
 			$scope.messageList = messageHistory;
 		}
 		$scope.$apply();
@@ -98,11 +98,11 @@ angular.module("ChatApp").controller("HomeCtrl",
 	
 	
 	$scope.sendMessage = function(){
-		console.log("currentRoom: " + Globals.getCurrentRoom());
-		console.log("roomName: " + $scope.roomName);
+		console.log("currentRoom: " + $scope.currentRoom);
 		console.log("message: " + $scope.theMessage);
-		socket.emit("sendmsg", {roomName: Globals.getCurrentRoom(), msg: $scope.theMessage});
+		socket.emit("sendmsg", {roomName: $scope.currentRoom, msg: $scope.theMessage});
 		$scope.theMessage = "";
+		$scope.$apply();
 	};
 	
 	
