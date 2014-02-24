@@ -18,9 +18,8 @@ angular.module("ChatApp").controller("HomeCtrl",
 		$scope.$apply();
 	});
 	
-	
 	//Request to join a chatroom
-	//TODO: Listen to the events emitted and handle them
+	//TODO: Handle the events
 	function joinRoom(){
 		socket.emit("joinroom", {room: undefined}, function(success, reason){
 			if(success === true){
@@ -34,5 +33,21 @@ angular.module("ChatApp").controller("HomeCtrl",
 		});
 	}
 	
+	//Sends information about the users in the chatroom
+	socket.on("updateusers", function(room, users){
+		//TODO: Implement
+		
+	});
 	
+	//Informs about the newly added or removed user
+	socket.on("servermessage", function(message, room, userName){
+		//TODO: Implement
+		
+	});
+	
+	//Only used if a new room is being created
+	socket.on("updatechat", function(roomName, messageHistory){
+		//TODO: Implement
+		
+	});
 }]);
