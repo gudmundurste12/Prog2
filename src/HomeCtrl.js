@@ -18,6 +18,7 @@ angular.module("ChatApp").controller("HomeCtrl",
 	$scope.roomName = $routeParams.roomName;
 	$scope.chatRoomName = "";
 	$scope.userName = Globals.getUserName();
+	$scope.theMessage = "";
 	var socket = Globals.getSocket();
 	
 	getChatRooms();
@@ -33,7 +34,6 @@ angular.module("ChatApp").controller("HomeCtrl",
 	//The server is sending the chatrooms
 	socket.on("roomlist", function(rooms){
 		$scope.chatRooms = rooms;
-		console.log($scope.chatRooms);
 		
 		$scope.$apply();
 	});
@@ -45,21 +45,18 @@ angular.module("ChatApp").controller("HomeCtrl",
 	};
 	
 	//Request to join a chatroom
-	//TODO: Handle the events
 	$scope.joinRoom = function(id){
-		console.log("Kominn i joinRoom");
-		console.log(id);
 		//As a response, the server will emit the following events:
 		//updateusers, servermessage, updatechat, updatetopic(not required to handle)
-		socket.emit("joinroom", {room: undefined}, function(success, reason){
+		socket.emit("joinroom", {room: id}, function(success, reason){
 			if(success === true){
 				if(id === undefined){
 					Globals.setNumberOfRooms(Globals.getNumberOfRooms() + 1);
 					id = Globals.getNumberOfRooms();
-					console.log(id);
 				}
+				Globals.setCurrentRoom(id);
+				//alert("Success");
 				
-				alert("Success");
 				$location.path("Home/" + id);
 				$scope.$apply();
 			}
@@ -70,9 +67,12 @@ angular.module("ChatApp").controller("HomeCtrl",
 	};
 	
 	//Sends information about the users in the chatroom
-	socket.on("updateusers", function(room, users){
-		//TODO: Implement
-		
+	socket.on("updateusers", function(room, users, ops){
+		if(Globals.getCurrentRoom() == room){
+			$scope.userList = users;
+		}
+		console.log("updateusers");
+		$scope.$apply();
 	});
 	
 	//Informs about the newly added or removed user
@@ -88,8 +88,23 @@ angular.module("ChatApp").controller("HomeCtrl",
 	});
 	
 	//Only used if a new room is being created
-	socket.on("updatechat", function(roomName, messageHistory){
-		//TODO: Implement
-		
+	socket.on("updatechat", function(roomNumber, messageHistory){
+		if(Globals.getCurrentRoom() == roomNumber){
+			$scope.messageList = messageHistory;	
+		}
+		console.log("updatechat");
+		$scope.$apply();
 	});
+	
+	
+	$scope.sendMessage = function(){
+		console.log("roomName: " + Globals.getCurrentRoom());
+		console.log("message: " + $scope.theMessage);
+		socket.emit("sendmsg", {roomName: Globals.getCurrentRoom(), msg: $scope.theMessage});
+		$scope.theMessage = "";
+	};
+	
+	
+	
+	
 }]);

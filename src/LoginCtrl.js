@@ -30,4 +30,6 @@ angular.module("ChatApp").controller("LoginCtrl",
 			$scope.$apply();
 		});
 	};
+	
+	
 }]);
