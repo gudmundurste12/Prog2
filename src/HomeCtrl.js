@@ -88,11 +88,45 @@ angular.module("ChatApp").controller("HomeCtrl",
 		$scope.$apply();
 	});
 	
+	socket.on("recv_privatemsg", function(userName, message){
+		//TODO: Show the message to the user
+	});
+	
 	
 	$scope.sendMessage = function(){
-		console.log("currentRoom: " + $scope.currentRoom);
-		console.log("message: " + $scope.theMessage);
-		socket.emit("sendmsg", {roomName: $scope.currentRoom, msg: $scope.theMessage});
+		var mess = $scope.theMessage;
+		
+		if(mess[0] === "@"){
+			//The user is sending a personal message
+			console.log("Personal message");
+			var i = mess.indexOf(" ");
+			var recipient = mess.slice(1,i);
+			var message = mess.slice(i + 1);
+			console.log(recipient);
+			console.log(message);
+			
+			socket.emit("privatemsg", {nick: recipient, message: message}, function(successful){
+				if(successful){
+					console.log("Message successfully sent");
+				}
+				else{
+					console.log("Message not sent");
+				}
+			});
+		}
+		else if(mess[0] === "/"){
+			//The user is entering a command
+			console.log("Command");
+			var i = mess.indexOf(" ");
+			var command = mess.slice(1,i);
+			var args = mess.slice(i + 1);
+			console.log(recipient);
+			console.log(message);
+			//TODO: Send the kick or ban events and handling events from the server
+		}
+		else{
+			socket.emit("sendmsg", {roomName: $scope.currentRoom, msg: $scope.theMessage});
+		}
 		$scope.theMessage = "";
 		$scope.$apply();
 	};
