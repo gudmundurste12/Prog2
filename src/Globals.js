@@ -2,7 +2,7 @@ angular.module("ChatApp").factory("Globals", [function() {
 	var userName = "";
 	var socket;
 	var numberOfRooms = 0;
-	var currentRoom = -1;
+	var currentRoom;
 	
 	return {
 		setUserName: function(u) {

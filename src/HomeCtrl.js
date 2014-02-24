@@ -41,7 +41,8 @@ angular.module("ChatApp").controller("HomeCtrl",
 	$scope.createNewChatRoom = function(){
 		//TODO: Implement
 		console.log("Creating a new chatroom: " + $scope.chatRoomName);
-		$scope.joinRoom(undefined);
+		Globals.setNumberOfRooms(Globals.getNumberOfRooms() + 1);
+		$scope.joinRoom(Globals.getNumberOfRooms() - 1);
 	};
 	
 	//Request to join a chatroom
@@ -50,10 +51,10 @@ angular.module("ChatApp").controller("HomeCtrl",
 		//updateusers, servermessage, updatechat, updatetopic(not required to handle)
 		socket.emit("joinroom", {room: id}, function(success, reason){
 			if(success === true){
-				if(id === undefined){
-					Globals.setNumberOfRooms(Globals.getNumberOfRooms() + 1);
-					id = Globals.getNumberOfRooms();
-				}
+				//if(id === undefined){
+				//	Globals.setNumberOfRooms(Globals.getNumberOfRooms() + 1);
+				//	id = Globals.getNumberOfRooms();
+				//}
 				Globals.setCurrentRoom(id);
 				//alert("Success");
 				
@@ -90,15 +91,15 @@ angular.module("ChatApp").controller("HomeCtrl",
 	//Only used if a new room is being created
 	socket.on("updatechat", function(roomNumber, messageHistory){
 		if(Globals.getCurrentRoom() == roomNumber){
-			$scope.messageList = messageHistory;	
+			$scope.messageList = messageHistory;
 		}
-		console.log("updatechat");
 		$scope.$apply();
 	});
 	
 	
 	$scope.sendMessage = function(){
-		console.log("roomName: " + Globals.getCurrentRoom());
+		console.log("currentRoom: " + Globals.getCurrentRoom());
+		console.log("roomName: " + $scope.roomName);
 		console.log("message: " + $scope.theMessage);
 		socket.emit("sendmsg", {roomName: Globals.getCurrentRoom(), msg: $scope.theMessage});
 		$scope.theMessage = "";
