@@ -1,5 +1,5 @@
 angular.module("ChatApp").controller("HomeCtrl", 
-	["$scope", "$location", "Globals", "$routeParams", function($scope, $location, Globals){
+	["$scope", "$location", "Globals", "$routeParams", function($scope, $location, Globals, $routeParams){
 	$scope.chatRooms = [];
 	$scope.messageList = [];
 	$scope.userList = [];
