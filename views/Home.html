@@ -11,7 +11,7 @@
 	<div id="ListOfChatRooms">
 		<table>
 			<ul ng-repeat="item in chatRooms">
-				<li ng-click="joinRoom($index)"><p>{{$index}}</p> {{item.topic}}</li>
+				<li ng-click="joinRoom($index)">{{$index}} {{item.topic}}</li>
 			</ul>
 		</table>
 	</div>
