@@ -1,17 +1,6 @@
 angular.module("ChatApp").controller("HomeCtrl", 
 	["$scope", "$location", "Globals", "$routeParams", function($scope, $location, Globals, $routeParams){
-	
-	
-	//Dummy chatrooms
-	// $scope.chatRooms = [{
-		// topic: "WAT"
-	// }, {
-		// topic: "Here be chatrooms"
-	// }, {
-		// topic: "Who's your daddy and what does he do?"
-	// }];
-	
-	
+		
 	$scope.chatRooms = [];
 	$scope.messageList = [];
 	$scope.userList = [];
@@ -34,7 +23,7 @@ angular.module("ChatApp").controller("HomeCtrl",
 	//The server is sending the chatrooms
 	socket.on("roomlist", function(rooms){
 		$scope.chatRooms = rooms;
-		
+		delete rooms.lobby;
 		$scope.$apply();
 	});
 	
@@ -51,12 +40,7 @@ angular.module("ChatApp").controller("HomeCtrl",
 		//updateusers, servermessage, updatechat, updatetopic(not required to handle)
 		socket.emit("joinroom", {room: id}, function(success, reason){
 			if(success === true){
-				//if(id === undefined){
-				//	Globals.setNumberOfRooms(Globals.getNumberOfRooms() + 1);
-				//	id = Globals.getNumberOfRooms();
-				//}
 				$scope.currentRoom = id;
-				//alert("Success");
 				
 				$location.path("Home/" + id);
 				$scope.$apply();
@@ -67,12 +51,19 @@ angular.module("ChatApp").controller("HomeCtrl",
 		});
 	};
 	
+	$scope.leaveRoom = function(){
+		socket.emit("partroom", $scope.currentRoom);
+		$location.path("Home/Lobby");
+		$scope.currentRoom = "Lobby";
+		$scope.$apply();
+	};
+	
 	//Sends information about the users in the chatroom
 	socket.on("updateusers", function(room, users, ops){
+		console.log("updateusers");
 		if($scope.currentRoom == room){
 			$scope.userList = users;
 		}
-		console.log("updateusers");
 		$scope.$apply();
 	});
 	
@@ -90,6 +81,7 @@ angular.module("ChatApp").controller("HomeCtrl",
 	
 	//Only used if a new room is being created
 	socket.on("updatechat", function(roomNumber, messageHistory){
+		console.log("updatechat");
 		if($scope.currentRoom == roomNumber){
 			$scope.messageList = messageHistory;
 		}

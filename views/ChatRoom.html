@@ -1,12 +1,13 @@
 <div>
+	<button ng-click="leaveRoom()">Leave room</button>
 	<p>You are logged in as: {{userName}}</p>
 	
 	<div id="Chat">
 		<ul>
-			<li ng-repeat="item in messageList" ng-hide="$first">
+			<li ng-repeat="item in messageList">
 				<span>
 					<strong>{{item.timestamp | date:"HH:mm:ss"}}</strong>
-					<strong>{{item.nick}}</strong>
+					<strong>{{item.nick}}:</strong>
 					{{item.message}}
 				</span>
 			</li>
@@ -16,6 +17,7 @@
 	</div>
 	<div id="ListOfUsers">
 		<ul>
+			<lh>Users<lh>
 			<li ng-repeat="item in userList"></li>
 		</ul>
 	</div>
