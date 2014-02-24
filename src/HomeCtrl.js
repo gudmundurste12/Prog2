@@ -1,14 +1,15 @@
 angular.module("ChatApp").controller("HomeCtrl", 
 	["$scope", "$location", "Globals", "$routeParams", function($scope, $location, Globals, $routeParams){
-	//$scope.chatRooms = [];
-	// Dummy chatrooms
-	$scope.chatRooms = [{
-		topic: "WAT"
-	}, {
-		topic: "Here be chatrooms"
-	}, {
-		topic: "Who's your daddy and what does he do?"
-	}];
+	$scope.chatRooms = [];
+	
+	//Dummy chatrooms
+	// $scope.chatRooms = [{
+		// topic: "WAT"
+	// }, {
+		// topic: "Here be chatrooms"
+	// }, {
+		// topic: "Who's your daddy and what does he do?"
+	// }];
 	
 	
 	
@@ -18,6 +19,9 @@ angular.module("ChatApp").controller("HomeCtrl",
 	$scope.chatRoomName = "";
 	$scope.userName = Globals.getUserName();
 	var socket = Globals.getSocket();
+	
+	getChatRooms();
+	
 	
 	//Asks the server for a list of chatrooms
 	function getChatRooms(){
@@ -75,10 +79,10 @@ angular.module("ChatApp").controller("HomeCtrl",
 	socket.on("servermessage", function(message, room, userName){
 		//TODO: Implement
 		if(message === "join"){
-		
+			
 		}
 		else{
-		
+			
 		}
 		
 	});
