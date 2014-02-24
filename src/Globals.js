@@ -1,6 +1,7 @@
 angular.module("ChatApp").factory("Globals", [function() {
 	var userName = "";
 	var socket;
+	var numberOfRooms = 4;
 	
 	return {
 		setUserName: function(u) {
@@ -15,6 +16,14 @@ angular.module("ChatApp").factory("Globals", [function() {
 				socket = io.connect("http://localhost:8080");
 			}
 			return socket;
+		},
+		
+		getNumberOfRooms: function(){
+			return numberOfRooms;
+		},
+		
+		setNumberOfRooms: function(a){
+			numberOfRooms = a;
 		}
 	};
 }]);

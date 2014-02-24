@@ -49,6 +49,12 @@ angular.module("ChatApp").controller("HomeCtrl",
 		//updateusers, servermessage, updatechat, updatetopic(not required to handle)
 		socket.emit("joinroom", {room: undefined}, function(success, reason){
 			if(success === true){
+				if(id === undefined){
+					Globals.setNumberOfRooms(Globals.getNumberOfRooms() + 1);
+					id = Globals.getNumberOfRooms();
+					console.log(id);
+				}
+				
 				alert("Success");
 				$location.path("Home/" + id);
 				$scope.$apply();
