@@ -11,6 +11,10 @@ angular.module("ChatApp").controller("LoginCtrl",
 			if(available){
 				if($scope.userName === ""){
 					$scope.errorMessage = "Please select a user name:";
+					setTimeout(function(){
+							$scope.errorMessage = "";
+							$scope.$apply();
+					}, 5000);
 				}
 				else
 				{
@@ -25,6 +29,10 @@ angular.module("ChatApp").controller("LoginCtrl",
 				}
 				else{
 					$scope.errorMessage = "That user name is already taken!";
+					setTimeout(function(){
+							$scope.errorMessage = "";
+							$scope.$apply();
+					}, 5000);
 				}
 			}
 			$scope.$apply();
