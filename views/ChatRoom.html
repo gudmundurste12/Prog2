@@ -1,22 +1,18 @@
 <div>
 	<button ng-click="leaveRoom()">Leave room</button>
-	<p>You are logged in as: {{userName}}</p>
-	
-	<aside>
-		<ul>
-			<li ng-repeat="message in privateMessages">
-				<strong>{{message.from}}</strong>
-				{{message.message}}
-			</li>
-		</ul>
-	</aside>
-	
-	<div id="Chat">
+	<p>Nick: {{userName}} </p>
+<!-- 	<p>RoomName: {{roomName}}</p>
+	<p>ChatRooms: {{chatRooms}} </p>
+	<p>ChatRoom Op: {{item.ops}} </p>
+	<p>ChatRoomName: {{chatRoomName}} </p>
+	<p>Current Room: {{currentRoom}} </p>
+	 -->
 
+	<div id="Chat">
 		<div class="row">
 			
-
-			<div class="col-md-6 col-xs-6">
+			<div class="col-md-3 col-xs-3">
+				<h4>Chat Messages:</h4>
 				<ul>
 					<li ng-repeat="item in messageList">
 						<span>
@@ -32,11 +28,23 @@
 
 			<div class="col-md-3 col-xs-3">
 				<div id="ListOfUsers">
+					<h4>Userlist:</h4>
 					<ul>
-						<lh>Users</lh>
 						<li ng-repeat="item in userList"></li>
 					</ul>
 				</div>
+			</div>
+
+			<div class="col-md-3 col-xs-3">
+				<h4>Private Messages:</h4>
+				<ul>
+					<li ng-repeat="message in privateMessages">
+						<strong>{{message.from}}</strong>
+						{{message.message}}
+					</li>
+					<li>Bull texti</li>
+					<li>Bull texti2</li>
+				</ul>
 			</div>
 
 

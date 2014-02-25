@@ -1,5 +1,6 @@
 angular.module("ChatApp").controller("HomeCtrl", 
-	["$scope", "$location", "Globals", "$routeParams", function($scope, $location, Globals, $routeParams){
+	["$scope", "$location", "Globals", "$routeParams", 
+	function($scope, $location, Globals, $routeParams){
 		
 	$scope.chatRooms = [];
 	$scope.messageList = [];
@@ -158,7 +159,7 @@ angular.module("ChatApp").controller("HomeCtrl",
 						console.log("User successfully banned");
 					}
 					else{
-						console.log("Baning user failed");
+						console.log("Banning user failed");
 					}
 				});
 			}
