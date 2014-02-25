@@ -8,6 +8,7 @@ angular.module("ChatApp").controller("HomeCtrl",
 	$scope.chatRoomName = "";
 	$scope.userName = Globals.getUserName();
 	$scope.theMessage = "";
+	$scope.errorMessage = "";
 	$scope.privateMessages = [];
 	$scope.currentRoom = $routeParams.roomName;
 	var socket = Globals.getSocket();
@@ -160,6 +161,12 @@ angular.module("ChatApp").controller("HomeCtrl",
 					}
 					else{
 						console.log("Banning user failed");
+						$scope.errorMessage = "You are not an op for this room!";
+						$scope.$apply();
+						setTimeout(function(){
+							$scope.errorMessage = "";
+							$scope.$apply();
+						}, 5000);
 					}
 				});
 			}
@@ -170,6 +177,12 @@ angular.module("ChatApp").controller("HomeCtrl",
 					}
 					else{
 						console.log("Kicking user failed");
+						$scope.errorMessage = "You are not an op for this room!";
+						$scope.$apply();
+						setTimeout(function(){
+							$scope.errorMessage = "";
+							$scope.$apply();
+						}, 5000);
 					}
 				});
 			}
