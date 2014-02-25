@@ -14,10 +14,12 @@ execute the following scripts:
 	
 
 Then, all you have to do is to open index.html
-in your favourite browser(Mozilla Firefox was
-used during development).
+in your favourite browser(Mozilla Firefox and
+Chromium were used during development).
 
-Url: http://0.0.0.0:8000
+Or, if that fails, type the following ip address
+to the address bar of your favourite browser and press enter:
+	http://127.0.0.1:8000
 
 
 -----------------------------------
