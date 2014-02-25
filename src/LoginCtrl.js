@@ -13,7 +13,6 @@ angular.module("ChatApp").controller("LoginCtrl",
 					$scope.errorMessage = "Please select a user name:";
 					setTimeout(function(){
 							$scope.errorMessage = "";
-							$scope.$apply();
 					}, 5000);
 				}
 				else
@@ -29,11 +28,11 @@ angular.module("ChatApp").controller("LoginCtrl",
 				}
 				else{
 					$scope.errorMessage = "That user name is already taken!";
-					setTimeout(function(){
-							$scope.errorMessage = "";
-							$scope.$apply();
-					}, 5000);
 				}
+				$(".alert").show();
+				setTimeout(function(){
+						$(".alert").hide();
+				}, 5000);
 			}
 			$scope.$apply();
 		});
@@ -44,6 +43,6 @@ angular.module("ChatApp").controller("LoginCtrl",
 			$scope.connect();
 		}
 	};
-	
+	$(".alert").hide();
 }]);
 
