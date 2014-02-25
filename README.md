@@ -4,6 +4,9 @@ To install the necessary dependencies you must
 execute the following scripts:
 	installScript.sh
 
+If you get a permission error you must do
+	sudo installScript.sh
+
 In order to run the application you must
 execute the following scripts:
 	runServer.sh
@@ -13,6 +16,8 @@ execute the following scripts:
 Then, all you have to do is to open index.html
 in your favourite browser(Mozilla Firefox was
 used during development).
+
+Url: http://0.0.0.0:8000
 
 
 -----------------------------------
