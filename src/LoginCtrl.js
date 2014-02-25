@@ -9,12 +9,14 @@ angular.module("ChatApp").controller("LoginCtrl",
 	$scope.connect = function() {
 		socket.emit("adduser", $scope.userName, function(available){
 			if(available){
+				//We don't want any empty user names
 				if($scope.userName === ""){
-					$scope.errorMessage = "Please select a user name:";
+					$scope.errorMessage = "Please select a user name";
 					setTimeout(function(){
 							$scope.errorMessage = "";
 					}, 5000);
 				}
+				//The desired user name is available
 				else
 				{
 					Globals.setUserName($scope.userName);
@@ -38,11 +40,14 @@ angular.module("ChatApp").controller("LoginCtrl",
 		});
 	};
 	
+	//Binds the enter key to the connect function
 	$scope.keyPress = function($event) {
 		if($event.keyCode === 13) {
 			$scope.connect();
 		}
 	};
+	
+	//Hides the error message area for aesthetic purposes
 	$(".alert").hide();
 }]);
 
