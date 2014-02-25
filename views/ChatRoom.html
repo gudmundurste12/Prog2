@@ -3,22 +3,34 @@
 	<p>You are logged in as: {{userName}}</p>
 	
 	<div id="Chat">
-		<ul>
-			<li ng-repeat="item in messageList">
-				<span>
-					<strong>{{item.timestamp | date:"HH:mm:ss"}}</strong>
-					<strong>{{item.nick}}:</strong>
-					{{item.message}}
-				</span>
-			</li>
-		</ul>
-		<input ng-model="theMessage">
-		<button ng-click="sendMessage()">Send</button>
-	</div>
-	<div id="ListOfUsers">
-		<ul>
-			<lh>Users<lh>
-			<li ng-repeat="item in userList"></li>
-		</ul>
-	</div>
+		<div class="row">
+			
+
+			<div class="col-md-6 col-xs-6">
+				<ul>
+					<li ng-repeat="item in messageList">
+						<span>
+							<strong>{{item.timestamp | date:"HH:mm:ss"}}</strong>
+							<strong>{{item.nick}}:</strong>
+							{{item.message}}
+						</span>
+					</li>
+				</ul>
+				<input ng-model="theMessage">
+				<button ng-click="sendMessage()">Send</button>
+			</div>
+
+			<div class="col-md-3 col-xs-3">
+				<div id="ListOfUsers">
+					<ul>
+						<lh>Users</lh>
+						<li ng-repeat="item in userList"></li>
+					</ul>
+				</div>
+			</div>
+
+
+		</div><!-- End Row -->
+	</div><!-- End Chat -->
+
 </div>

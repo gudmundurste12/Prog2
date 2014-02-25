@@ -6,12 +6,12 @@
 		<button ng-click="createNewChatRoom()">Create a new chatroom</button>
 	</div>
 	
-	<p>or click a room from the list to join.</p>
+	<p>...or click a room from the list to join.</p>
 	
 	<div id="ListOfChatRooms">
 		<table>
 			<ul ng-repeat="item in chatRooms">
-				<li ng-click="joinRoom($index)">{{$index}} {{item.topic}}</li>
+				<li ng-click="joinRoom($index)">Room: {{$index}} - {{item.topic}} {{count}}</li>
 			</ul>
 		</table>
 	</div>

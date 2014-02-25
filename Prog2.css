@@ -1,0 +1,19 @@
+body{
+	background-color: #cdc;
+}
+
+li	{
+	width:500px;
+}
+li:hover{
+
+	outline: 1px solid #ffc;
+}
+
+.row{
+	outline:1px solid red;
+}
+
+span6{
+	outline: 1px solid black;
+}
