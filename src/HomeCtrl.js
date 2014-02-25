@@ -7,6 +7,7 @@ angular.module("ChatApp").controller("HomeCtrl",
 	$scope.chatRoomName = "";
 	$scope.userName = Globals.getUserName();
 	$scope.theMessage = "";
+	$scope.privateMessages = [];
 	$scope.currentRoom = $routeParams.roomName;
 	var socket = Globals.getSocket();
 	
@@ -88,18 +89,22 @@ angular.module("ChatApp").controller("HomeCtrl",
 		$scope.$apply();
 	});
 	
-	socket.on("recv_privatemsg", function(userName, message){
+	socket.on("recv_privatemsg", function(from, message){
 		//TODO: Show the message to the user
+		console.log("Private message from " + from + ": " + message);
+		
+		$scope.privateMessages.push({from: from, message: message});
+		$scope.$apply();
 	});
 	
 	
 	$scope.sendMessage = function(){
 		var mess = $scope.theMessage;
+		var i = mess.indexOf(" ");
 		
 		if(mess[0] === "@"){
 			//The user is sending a personal message
 			console.log("Personal message");
-			var i = mess.indexOf(" ");
 			var recipient = mess.slice(1,i);
 			var message = mess.slice(i + 1);
 			console.log(recipient);
@@ -117,11 +122,10 @@ angular.module("ChatApp").controller("HomeCtrl",
 		else if(mess[0] === "/"){
 			//The user is entering a command
 			console.log("Command");
-			var i = mess.indexOf(" ");
 			var command = mess.slice(1,i);
 			var args = mess.slice(i + 1);
-			console.log(recipient);
-			console.log(message);
+			console.log(command);
+			console.log(args);
 			//TODO: Send the kick or ban events and handling events from the server
 		}
 		else{

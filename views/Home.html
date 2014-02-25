@@ -1,6 +1,15 @@
 <div>
 	<h1>Welcome to the lobby, {{userName}}</h1>
 	
+	<aside>
+		<ul>
+			<li ng-repeat="message in privateMessages">
+				<strong>{{message.from}}</strong>
+				{{message.message}}
+			</li>
+		</ul>
+	</aside>
+	
 	<div id="CreateNewChatRoom">
 		<input ng-model="chatRoomName" placeholder="Enter room name"></input>
 		<button ng-click="createNewChatRoom()">Create a new chatroom</button>

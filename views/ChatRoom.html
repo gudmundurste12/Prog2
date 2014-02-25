@@ -2,6 +2,15 @@
 	<button ng-click="leaveRoom()">Leave room</button>
 	<p>You are logged in as: {{userName}}</p>
 	
+	<aside>
+		<ul>
+			<li ng-repeat="message in privateMessages">
+				<strong>{{message.from}}</strong>
+				{{message.message}}
+			</li>
+		</ul>
+	</aside>
+	
 	<div id="Chat">
 		<ul>
 			<li ng-repeat="item in messageList">
