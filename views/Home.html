@@ -11,7 +11,7 @@
 	</aside>
 	
 	<div id="CreateNewChatRoom">
-		<input ng-model="chatRoomName" placeholder="Enter room name" autofocus></input>
+		<input ng-model="chatRoomName" placeholder="Enter room name" ng-keypress="keyPress($event)" autofocus></input>
 		<button ng-click="createNewChatRoom()">Create a new chatroom</button>
 	</div>
 	

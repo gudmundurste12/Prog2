@@ -12,6 +12,7 @@
 	</aside>
 	
 	<div id="Chat">
+
 		<div class="row">
 			
 
@@ -25,7 +26,7 @@
 						</span>
 					</li>
 				</ul>
-				<input ng-model="theMessage" autofocus>
+				<input ng-model="theMessage" ng-keypress="keyPress($event)" autofocus>
 				<button ng-click="sendMessage()">Send</button>
 			</div>
 

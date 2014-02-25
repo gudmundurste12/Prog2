@@ -31,5 +31,10 @@ angular.module("ChatApp").controller("LoginCtrl",
 		});
 	};
 	
+	$scope.keyPress = function($event) {
+		if($event.keyCode === 13) {
+			$scope.connect();
+		}
+	};
 	
 }]);

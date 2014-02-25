@@ -1,6 +1,6 @@
 <div>
 	<h1>Select your user name</h1>
-	<input ng-model="userName" placeholder="Select user name" autofocus></input>
+	<input ng-model="userName" placeholder="Select user name" ng-keypress="keyPress($event)" autofocus></input>
 	<button ng-click="connect()">Connect</button>
 	<p>{{errorMessage}}</p>
 </div>

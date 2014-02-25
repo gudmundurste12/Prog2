@@ -179,4 +179,19 @@ angular.module("ChatApp").controller("HomeCtrl",
 		$scope.theMessage = "";
 		$scope.$apply();
 	};
+
+	$scope.keyPress = function($event) {
+		if($event.keyCode === 13) {
+				// Now we are using the enter buttons for two functions on the same Controller!
+			if ( $scope.currentRoom === undefined){
+				// If we are in the lobby, use enter to join room.
+				$scope.joinRoom();
+			}else{
+				// If we are in a room (not lobby), use enter to send message.
+				$scope.sendMessage();
+			}
+
+		}
+	};
+
 }]);
