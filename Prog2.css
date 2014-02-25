@@ -5,9 +5,8 @@ body{
 li	{
 	width:500px;
 }
+
 #ListOfChatRooms li:hover{
-
-	outline: 1px solid #ffc;
+	text-decoration: underline;
+	cursor: pointer;
 }
-
-/*.row{outline:1px solid red;}*/
