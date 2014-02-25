@@ -162,10 +162,10 @@ angular.module("ChatApp").controller("HomeCtrl",
 					else{
 						console.log("Banning user failed");
 						$scope.errorMessage = "You are not an op for this room!";
+						$(".alert").show();
 						$scope.$apply();
 						setTimeout(function(){
-							$scope.errorMessage = "";
-							$scope.$apply();
+							$(".alert").hide();
 						}, 5000);
 					}
 				});
@@ -178,10 +178,10 @@ angular.module("ChatApp").controller("HomeCtrl",
 					else{
 						console.log("Kicking user failed");
 						$scope.errorMessage = "You are not an op for this room!";
+						$(".alert").show();
 						$scope.$apply();
 						setTimeout(function(){
-							$scope.errorMessage = "";
-							$scope.$apply();
+							$(".alert").hide();
 						}, 5000);
 					}
 				});
@@ -190,7 +190,7 @@ angular.module("ChatApp").controller("HomeCtrl",
 		else{
 			socket.emit("sendmsg", {roomName: $scope.currentRoom, msg: $scope.theMessage});
 		}
-		$scope.theMessage = "";
+		$scope.theMessage = "x";
 		$scope.$apply();
 	};
 
@@ -207,5 +207,7 @@ angular.module("ChatApp").controller("HomeCtrl",
 
 		}
 	};
+
+	$(".alert").hide();
 
 }]);

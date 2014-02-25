@@ -23,7 +23,7 @@
 				</ul>
 				<input ng-model="theMessage" ng-keypress="keyPress($event)" autofocus>
 				<button ng-click="sendMessage()">Send</button>
-				<p>{{errorMessage}}</p>
+				<p class="alert alert-danger alert-dismissable">{{errorMessage}}</p>
 			</div>
 
 			<div class="col-md-3 col-xs-3">
