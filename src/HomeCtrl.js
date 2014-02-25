@@ -90,7 +90,6 @@ angular.module("ChatApp").controller("HomeCtrl",
 	});
 	
 	socket.on("recv_privatemsg", function(from, message){
-		//TODO: Show the message to the user
 		console.log("Private message from " + from + ": " + message);
 		
 		$scope.privateMessages.push({from: from, message: message});
