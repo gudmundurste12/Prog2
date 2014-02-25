@@ -21,7 +21,6 @@ Or, if that fails, type the following ip address
 to the address bar of your favourite browser and press enter:
 	http://127.0.0.1:8000
 
-
 -----------------------------------
 	How to execute .sh scripts
 -----------------------------------
@@ -33,4 +32,25 @@ Unix
 Windows
 	sh hereIsAScript.sh
 Max
+
 	sh hereIsAScript.sh
+
+-----------------------------------
+Useful chat commands:
+-----------------------------------
+
+Kick user:	
+/kick <username>
+
+Ban user:
+/ban <username>
+
+NOTE: kick and ban are only available to ops.
+
+
+Send private message:
+@username <message>
+
+Example: Send joe the private message "Hey joe"
+
+@joe Hey joe
