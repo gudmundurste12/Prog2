@@ -2,6 +2,15 @@
 	<button ng-click="leaveRoom()">Leave room</button>
 	<p>You are logged in as: {{userName}}</p>
 	
+	<aside>
+		<ul>
+			<li ng-repeat="message in privateMessages">
+				<strong>{{message.from}}</strong>
+				{{message.message}}
+			</li>
+		</ul>
+	</aside>
+	
 	<div id="Chat">
 		<div class="row">
 			
@@ -16,7 +25,7 @@
 						</span>
 					</li>
 				</ul>
-				<input ng-model="theMessage">
+				<input ng-model="theMessage" autofocus>
 				<button ng-click="sendMessage()">Send</button>
 			</div>
 
