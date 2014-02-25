@@ -47,7 +47,7 @@ angular.module("ChatApp").controller("HomeCtrl",
 				$scope.$apply();
 			}
 			else{
-				alert("Failure");
+				alert("Joining room failed: " + reason);
 			}
 		});
 	};
@@ -61,9 +61,11 @@ angular.module("ChatApp").controller("HomeCtrl",
 	
 	//Sends information about the users in the chatroom
 	socket.on("updateusers", function(room, users, ops){
+		$scope.$apply();
 		console.log("updateusers");
 		if($scope.currentRoom == room){
 			$scope.userList = users;
+			console.log(users);
 		}
 		$scope.$apply();
 	});
@@ -71,18 +73,23 @@ angular.module("ChatApp").controller("HomeCtrl",
 	//Informs about the newly added or removed user
 	socket.on("servermessage", function(message, room, userName){
 		//TODO: Implement
+		$scope.$apply();
+		console.log("ServerMessage");
 		if(message === "join"){
-			
+			if($scope.currentRoom === room){
+				$scope.userList[userName] = userName;
+			}
 		}
 		else{
 			
 		}
-		
+		$scope.$apply();
 	});
 	
 	//Only used if a new room is being created
 	socket.on("updatechat", function(roomNumber, messageHistory){
 		console.log("updatechat");
+		$scope.$apply();
 		if($scope.currentRoom == roomNumber){
 			$scope.messageList = messageHistory;
 		}
@@ -90,11 +97,28 @@ angular.module("ChatApp").controller("HomeCtrl",
 	});
 	
 	socket.on("recv_privatemsg", function(from, message){
-		//TODO: Show the message to the user
 		console.log("Private message from " + from + ": " + message);
 		
 		$scope.privateMessages.push({from: from, message: message});
 		$scope.$apply();
+	});
+	
+	socket.on("kicked", function(room, kicked, kickedBy){
+		console.log(kicked + " kicked from " + room + " by " + kickedBy);
+		console.log(Globals.getUserName());
+		if(($scope.userName === kicked) && ($scope.currentRoom === room)){
+			alert("You have been kicked from the room");
+			$scope.leaveRoom();
+		}
+	});
+	
+	socket.on("banned", function(room, banned, bannedBy){
+		console.log(banned + " banned from " + room + " by " + bannedBy);
+		console.log(Globals.getUserName());
+		if(($scope.userName === banned) && ($scope.currentRoom === room)){
+			alert("You have been banned from the room");
+			$scope.leaveRoom();
+		}
 	});
 	
 	
@@ -127,6 +151,27 @@ angular.module("ChatApp").controller("HomeCtrl",
 			console.log(command);
 			console.log(args);
 			//TODO: Send the kick or ban events and handling events from the server
+			//if(args.length() > 0){
+			if(command === "ban"){
+				socket.emit("ban", {user: args, room: $scope.currentRoom}, function(successful){
+					if(successful){
+						console.log("User successfully banned");
+					}
+					else{
+						console.log("Baning user failed");
+					}
+				});
+			}
+			else if(command === "kick"){
+				socket.emit("kick", {user: args, room: $scope.currentRoom}, function(successful){
+					if(successful){
+						console.log("User successfully kicked");
+					}
+					else{
+						console.log("Kicking user failed");
+					}
+				});
+			}
 		}
 		else{
 			socket.emit("sendmsg", {roomName: $scope.currentRoom, msg: $scope.theMessage});
@@ -134,8 +179,4 @@ angular.module("ChatApp").controller("HomeCtrl",
 		$scope.theMessage = "";
 		$scope.$apply();
 	};
-	
-	
-	
-	
 }]);
