@@ -1,12 +1,11 @@
 <div>
 	<button ng-click="leaveRoom()">Leave room</button>
 	<p>Nick: {{userName}} </p>
-<!-- 	<p>RoomName: {{roomName}}</p>
 	<p>ChatRooms: {{chatRooms}} </p>
-	<p>ChatRoom Op: {{item.ops}} </p>
 	<p>ChatRoomName: {{chatRoomName}} </p>
 	<p>Current Room: {{currentRoom}} </p>
-	 -->
+	<p>Topic: {{chatRooms[currentRoom].topic}}</p>
+	
 
 	<div id="Chat">
 		<div class="row">
@@ -24,6 +23,7 @@
 				</ul>
 				<input ng-model="theMessage" ng-keypress="keyPress($event)" autofocus>
 				<button ng-click="sendMessage()">Send</button>
+				<p>{{errorMessage}}</p>
 			</div>
 
 			<div class="col-md-3 col-xs-3">
