@@ -190,7 +190,7 @@ angular.module("ChatApp").controller("HomeCtrl",
 		else{
 			socket.emit("sendmsg", {roomName: $scope.currentRoom, msg: $scope.theMessage});
 		}
-		$scope.theMessage = "x";
+		$scope.theMessage = "";
 		$scope.$apply();
 	};
 
